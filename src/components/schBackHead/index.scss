@@ -1,0 +1,44 @@
+.logo-sch-head {
+	width: 750px;
+	.head-wrap {
+		position: relative;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: linear-gradient(#ed3a40, #cb1728);
+		box-sizing: border-box;
+		.icon-back {
+			position: absolute;
+			bottom: 24px;
+			left: 0px;
+			width: 60px;
+			height: 39px;
+		}
+		.sch-wrap {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			width: 250px;
+			height: 45px;
+			border-radius: 45px;
+			background: #fff;
+			padding: 0 8px;
+			box-sizing: border-box;
+			.icon-sch {
+				flex: 0 0 33px;
+				width: 33px;
+				height: 32px;
+			}
+			.sch-ipt {
+				margin-left: 4px;
+				padding-left: 8px;
+				height: 32px !important;
+				line-height: 32px;
+				min-height: 0;
+				font-size: 26px;
+				border-left: 1px solid #999;
+			}
+		}
+	}
+}

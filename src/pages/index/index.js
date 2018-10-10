@@ -3,6 +3,8 @@ import { View, Text } from '@tarojs/components';
 import './index.scss';
 
 import LogoSchHead from '../../components/logoSchHead';
+import SchBackHead from '../../components/schBackHead';
+import TitleBackHead from '../../components/titleBackHead';
 
 export default class Index extends Component {
 	config = {
@@ -28,6 +30,8 @@ export default class Index extends Component {
 		return (
 			<View className='index'>
 				<LogoSchHead />
+				{/* <SchBackHead /> */}
+				{/* <TitleBackHead /> */}
 				<Text>hello</Text>
 			</View>
 		);
