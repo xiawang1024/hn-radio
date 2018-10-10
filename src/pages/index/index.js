@@ -5,6 +5,7 @@ import './index.scss';
 import LogoSchHead from '../../components/logoSchHead';
 import SchBackHead from '../../components/schBackHead';
 import TitleBackHead from '../../components/titleBackHead';
+import SwiperWrap from '../../components/swiperWrap';
 
 export default class Index extends Component {
 	config = {
@@ -32,6 +33,7 @@ export default class Index extends Component {
 				<LogoSchHead />
 				{/* <SchBackHead /> */}
 				{/* <TitleBackHead /> */}
+				<SwiperWrap />
 				<Text>hello</Text>
 			</View>
 		);
