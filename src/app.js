@@ -1,35 +1,47 @@
-import Taro, { Component } from '@tarojs/taro'
-import Index from './pages/index'
+import Taro, { Component } from '@tarojs/taro';
+import { set as setGlobalData } from './global_data';
+import Index from './pages/index';
 
-import './app.scss'
+import './app.scss';
 
 class App extends Component {
+	config = {
+		pages: [ 'pages/index/index' ],
+		window: {
+			backgroundTextStyle: 'light',
+			navigationBarBackgroundColor: '#fff',
+			navigationBarTitleText: 'WeChat',
+			navigationBarTextStyle: 'black',
+			navigationStyle: 'custom'
+		}
+	};
+	componentWillMount() {
+		let data = Taro.getSystemInfoSync();
+		let totalTopHeight = 68;
+		if (data.model.indexOf('iPhone X') !== -1) {
+			totalTopHeight = 88;
+		} else if (data.model.indexOf('iPhone') !== -1) {
+			totalTopHeight = 64;
+		}
+		let { screenHeight, screenWidth } = data;
 
-  config = {
-    pages: [
-      'pages/index/index'
-    ],
-    window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
-    }
-  }
+		setGlobalData('statusBarHeight', data.statusBarHeight);
+		setGlobalData('titleBarHeight', totalTopHeight - data.statusBarHeight);
+		setGlobalData('headHeight', totalTopHeight);
+		setGlobalData('screenHeight', screenHeight);
+		setGlobalData('screenWidth', screenWidth);
+	}
+	componentDidMount() {}
 
-  componentDidMount () {}
+	componentDidShow() {}
 
-  componentDidShow () {}
+	componentDidHide() {}
 
-  componentDidHide () {}
+	componentCatchError() {}
 
-  componentCatchError () {}
-
-  render () {
-    return (
-      <Index />
-    )
-  }
+	render() {
+		return <Index />;
+	}
 }
 
-Taro.render(<App />, document.getElementById('app'))
+Taro.render(<App />, document.getElementById('app'));
