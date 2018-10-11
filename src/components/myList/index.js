@@ -4,6 +4,9 @@ import { View, Image, Text } from '@tarojs/components';
 import './index.scss';
 
 export default class MyTabBar extends Component {
+	static defaultProps = {
+		dataList: []
+	};
 	constructor(props) {
 		super(props);
 		this.state = {};
