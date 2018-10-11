@@ -48,13 +48,15 @@ class App extends Component {
 		} else if (data.model.indexOf('iPhone') !== -1) {
 			totalTopHeight = 64;
 		}
-		let { screenHeight, screenWidth } = data;
+		console.log(data);
+		let { screenHeight, screenWidth, windowHeight } = data;
 
 		setGlobalData('statusBarHeight', data.statusBarHeight);
 		setGlobalData('titleBarHeight', totalTopHeight - data.statusBarHeight);
 		setGlobalData('headHeight', totalTopHeight);
 		setGlobalData('screenHeight', screenHeight);
 		setGlobalData('screenWidth', screenWidth);
+		setGlobalData('windowHeight', windowHeight);
 	}
 	componentDidMount() {}
 
