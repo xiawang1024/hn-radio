@@ -3,9 +3,8 @@ import { View, Text } from '@tarojs/components';
 import './index.scss';
 
 import LogoSchHead from '../../components/logoSchHead';
-import SchBackHead from '../../components/schBackHead';
-import TitleBackHead from '../../components/titleBackHead';
 import SwiperWrap from '../../components/swiperWrap';
+import HomeType from '../../components/homeType';
 
 export default class Index extends Component {
 	config = {
@@ -31,10 +30,9 @@ export default class Index extends Component {
 		return (
 			<View className='index'>
 				<LogoSchHead />
-				{/* <SchBackHead /> */}
-				{/* <TitleBackHead /> */}
 				<SwiperWrap />
-				<Text>hello</Text>
+				<HomeType />
+				<View className='line-h' />
 			</View>
 		);
 	}

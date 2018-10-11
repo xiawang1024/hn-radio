@@ -1,0 +1,20 @@
+.home-type {
+	width: 750px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 30px 40px;
+	box-sizing: border-box;
+	background: #fff;
+	.item {
+		flex-basis: 150px;
+		text-align: center;
+		.icon-type {
+			width: 95px;
+			height: 95px;
+		}
+		.name-type {
+			font-size: 28px;
+		}
+	}
+}
