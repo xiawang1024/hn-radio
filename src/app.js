@@ -6,7 +6,7 @@ import './app.scss';
 
 class App extends Component {
 	config = {
-		pages: [ 'pages/index/index' ],
+		pages: [ 'pages/my/index', 'pages/index/index', 'pages/type/index' ],
 		window: {
 			backgroundTextStyle: 'light',
 			navigationBarBackgroundColor: '#fff',
@@ -26,13 +26,13 @@ class App extends Component {
 					text: '发现'
 				},
 				{
-					pagePath: 'pages/index/index',
+					pagePath: 'pages/type/index',
 					iconPath: './icons/tab-10.png',
 					selectedIconPath: './icons/tab-11.png',
 					text: '分类'
 				},
 				{
-					pagePath: 'pages/index/index',
+					pagePath: 'pages/my/index',
 					iconPath: './icons/tab-20.png',
 					selectedIconPath: './icons/tab-21.png',
 					text: '我的'
