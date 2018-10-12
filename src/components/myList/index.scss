@@ -54,9 +54,16 @@
 				}
 			}
 			.desc-wrap {
+				height: 90px;
 				margin-top: 8px;
 				font-size: 22px;
 				color: #999;
+				overflow: hidden;
+				display: -webkit-box;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
 			}
 		}
 		.other-wrap {

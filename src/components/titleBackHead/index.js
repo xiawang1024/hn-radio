@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Image, Input, Icon } from '@tarojs/components';
+import { View, Image, Text } from '@tarojs/components';
 import { get as getGlobalData } from '../../global_data';
 import './index.scss';
 
@@ -28,12 +28,7 @@ export default class SchBackHead extends Component {
 	componentDidShow() {}
 
 	componentDidHide() {}
-	onInput = (e) => {
-		console.log(e.target.value);
-	};
-	onConfirm = (e) => {
-		console.log(e.target.value);
-	};
+
 	onBack = () => {
 		Taro.showModal({
 			title: 'back'
@@ -45,8 +40,15 @@ export default class SchBackHead extends Component {
 			height: `${headHeight}px`,
 			paddingTop: `${statusBarHeight}px`
 		};
+		let fixedHeadStyle = {
+			position: 'fixed',
+			zIndex: 1024,
+			left: 0,
+			top: 0,
+			width: '100%'
+		};
 		return (
-			<View className='logo-sch-head'>
+			<View className='logo-sch-head' style={fixedHeadStyle}>
 				<View className='head-wrap' style={headStyle}>
 					<Image
 						src={require('./icon-back.png')}
@@ -54,18 +56,7 @@ export default class SchBackHead extends Component {
 						mode='aspectFit'
 						onClick={this.onBack}
 					/>
-					<View className='sch-wrap'>
-						<Icon size='16' type='search' />
-						<Input
-							onInput={this.onInput}
-							onConfirm={this.onConfirm}
-							className='sch-ipt'
-							type='text'
-							placeholder='搜索'
-							placeholderStyle='color:gray'
-							confirmType='search'
-						/>
-					</View>
+					<Text className='title'>直播电台</Text>
 				</View>
 			</View>
 		);

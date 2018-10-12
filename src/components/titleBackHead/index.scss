@@ -15,30 +15,9 @@
 			width: 60px;
 			height: 39px;
 		}
-		.sch-wrap {
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			width: 250px;
-			height: 45px;
-			border-radius: 45px;
-			background: #fff;
-			padding: 0 8px;
-			box-sizing: border-box;
-			.icon-sch {
-				flex: 0 0 33px;
-				width: 33px;
-				height: 32px;
-			}
-			.sch-ipt {
-				margin-left: 4px;
-				padding-left: 8px;
-				height: 32px !important;
-				line-height: 32px;
-				min-height: 0;
-				font-size: 26px;
-				border-left: 1px solid #999;
-			}
+		.title {
+			font-size: 32px;
+			color: #fff;
 		}
 	}
 }
