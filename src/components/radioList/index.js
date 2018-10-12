@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Image, Text } from '@tarojs/components';
-import { get as getGlobalData } from '../../global_data';
+
 import './index.scss';
 import SwiperWrap from '../swiperWrap';
 
@@ -10,18 +10,11 @@ export default class MyTabBar extends Component {
 	};
 	constructor(props) {
 		super(props);
-		this.state = {
-			headHeight: 0
-		};
 	}
 
 	componentWillMount() {}
 
-	componentDidMount() {
-		this.setState({
-			headHeight: getGlobalData('headHeight')
-		});
-	}
+	componentDidMount() {}
 
 	componentWillUnmount() {}
 
@@ -30,16 +23,12 @@ export default class MyTabBar extends Component {
 	componentDidHide() {}
 
 	render() {
-		let { headHeight } = this.state;
-		let paddingTopStyle = {
-			marginTop: `${headHeight}px`
-		};
 		const { dataList, isHasMore, tabType } = this.props;
 
 		//是否收藏
 		let isCollected = false;
 		return (
-			<View className='radio-list' style={paddingTopStyle}>
+			<View className='radio-list'>
 				<SwiperWrap />
 				<View className='list-wrap'>
 					{dataList.map((item, index) => (

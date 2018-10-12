@@ -6,7 +6,13 @@ import './app.scss';
 
 class App extends Component {
 	config = {
-		pages: [ 'pages/radio/index', 'pages/index/index', 'pages/my/index', 'pages/type/index' ],
+		pages: [
+			'pages/onDemand/index',
+			'pages/index/index',
+			'pages/my/index',
+			'pages/type/index',
+			'pages/radio/index'
+		],
 		window: {
 			backgroundTextStyle: 'light',
 			navigationBarBackgroundColor: '#fff',

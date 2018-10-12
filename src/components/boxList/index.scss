@@ -1,0 +1,40 @@
+.box-list {
+	width: 750px;
+	padding: 20px;
+	box-sizing: border-box;
+	.head-wrap {
+		display: flex;
+		align-items: center;
+		font-size: 30px;
+		.icon-head {
+			margin-right: 8px;
+			width: 4px;
+			height: 24px;
+			background: #cb1728;
+		}
+	}
+	.list-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		.item {
+			flex: 0 0 224px;
+			padding: 10px 0 20px 0;
+			.logo {
+				width: 224px;
+				height: 224px;
+				border-radius: 8px;
+			}
+			.name {
+				height: 60px;
+				font-size: 22px;
+				overflow: hidden;
+				display: -webkit-box;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+			}
+		}
+	}
+}

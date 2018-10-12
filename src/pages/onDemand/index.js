@@ -1,17 +1,14 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
-
 import './index.scss';
 
-import LogoSchHead from '../../components/logoSchHead';
+import TitleBackHead from '../../components/titleBackHead';
+import BoxList from '../../components/boxList';
 import SwiperWrap from '../../components/swiperWrap';
-import HomeType from '../../components/homeType';
-import HomeHot from '../../components/homeHot';
-import HomeLive from '../../components/homeLive';
 
-export default class Index extends Component {
+export default class OnDemand extends Component {
 	config = {
-		navigationBarTitleText: '首页',
+		navigationBarTitleText: '分类',
 		navigationBarTextStyle: 'white'
 		// disableScroll: true
 	};
@@ -30,17 +27,12 @@ export default class Index extends Component {
 	componentDidHide() {}
 
 	render() {
-		let fixedHead = true;
-
+		let headTitle = '点播节目';
 		return (
 			<View className='index'>
-				<LogoSchHead fixedHead={fixedHead} />
+				<TitleBackHead headTitle={headTitle} />
 				<SwiperWrap />
-				<HomeType />
-				<View className='line-h' />
-				<HomeHot />
-				<View className='line-h' />
-				<HomeLive />
+				<BoxList />
 			</View>
 		);
 	}
