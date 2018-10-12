@@ -21,10 +21,7 @@ export default class HomeType extends Component {
 	componentDidHide() {}
 
 	typeHandler = (msg) => {
-		Taro.showToast({
-			title: msg,
-			icon: 'success'
-		});
+		Taro.navigateTo({ url: `/pages/radio/index` });
 	};
 
 	render() {

@@ -1,15 +1,23 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Swiper, SwiperItem, Image } from '@tarojs/components';
 import './index.scss';
+import { get as getGlobalData } from '../../global_data';
 
 export default class SwiperWrap extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			headHeight: 0
+		};
 	}
 
 	componentWillMount() {}
 
-	componentDidMount() {}
+	componentDidMount() {
+		this.setState({
+			headHeight: getGlobalData('headHeight')
+		});
+	}
 
 	componentWillUnmount() {}
 
@@ -18,8 +26,13 @@ export default class SwiperWrap extends Component {
 	componentDidHide() {}
 
 	render() {
+		let { headHeight } = this.state;
+		let paddingTopStyle = {
+			marginTop: `${headHeight}px`
+		};
 		return (
 			<Swiper
+				style={paddingTopStyle}
 				className='swiper-wrap'
 				indicatorColor='#efefef'
 				indicatorActiveColor='#c20d23'

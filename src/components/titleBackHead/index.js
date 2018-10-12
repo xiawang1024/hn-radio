@@ -12,6 +12,9 @@ export default class SchBackHead extends Component {
 			headHeight: 0
 		};
 	}
+	static defaultProps = {
+		headTitle: '直播电台'
+	};
 
 	componentWillMount() {}
 
@@ -30,9 +33,7 @@ export default class SchBackHead extends Component {
 	componentDidHide() {}
 
 	onBack = () => {
-		Taro.showModal({
-			title: 'back'
-		});
+		Taro.navigateBack();
 	};
 	render() {
 		let { statusBarHeight, titleBarHeight, headHeight } = this.state;
@@ -47,6 +48,7 @@ export default class SchBackHead extends Component {
 			top: 0,
 			width: '100%'
 		};
+		let { headTitle } = this.props;
 		return (
 			<View className='logo-sch-head' style={fixedHeadStyle}>
 				<View className='head-wrap' style={headStyle}>
@@ -56,7 +58,7 @@ export default class SchBackHead extends Component {
 						mode='aspectFit'
 						onClick={this.onBack}
 					/>
-					<Text className='title'>直播电台</Text>
+					<Text className='title'>{headTitle}</Text>
 				</View>
 			</View>
 		);
