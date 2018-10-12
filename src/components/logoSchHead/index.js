@@ -13,6 +13,10 @@ export default class LogoSchHead extends Component {
 		};
 	}
 
+	static defaultProps = {
+		fixedHead: false
+	};
+
 	componentWillMount() {}
 
 	componentDidMount() {
@@ -36,12 +40,23 @@ export default class LogoSchHead extends Component {
 	};
 	render() {
 		let { statusBarHeight, titleBarHeight, headHeight } = this.state;
+		let { fixedHead } = this.props;
 		let headStyle = {
 			height: `${headHeight}px`,
 			paddingTop: `${statusBarHeight}px`
 		};
+		let fixedHeadStyle = {};
+		if (fixedHead) {
+			fixedHeadStyle = {
+				position: 'fixed',
+				zIndex: 1024,
+				left: 0,
+				top: 0,
+				width: '100%'
+			};
+		}
 		return (
-			<View className='logo-sch-head'>
+			<View className='logo-sch-head' style={fixedHeadStyle}>
 				<View className='head-wrap' style={headStyle}>
 					<Image src={require('./icon-logo.png')} className='icon-logo' />
 					<View className='sch-wrap'>
