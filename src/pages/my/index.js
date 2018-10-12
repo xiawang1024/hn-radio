@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
+import { View, OpenData } from '@tarojs/components';
 import { get as getGlobalData } from '../../global_data';
 import MyTabBar from '../../components/myTabBar';
 import MyList from '../../components/myList';
@@ -35,6 +35,10 @@ export default class Index extends Component {
 	componentDidMount() {
 		let dataList = [ ...Array(10).keys() ];
 		this.setState({ dataList });
+
+		Taro.login({}).then((res) => {
+			console.log(res);
+		});
 	}
 
 	componentWillUnmount() {}
@@ -46,6 +50,10 @@ export default class Index extends Component {
 	tabSwitchCb = (tabType) => {
 		console.log(tabType);
 		this.setState({ tabType });
+		Taro.pageScrollTo({
+			scrollTop: 0,
+			duration: 500
+		});
 	};
 	onReachBottom() {
 		console.log('上拉加载更多开始');
@@ -78,11 +86,14 @@ export default class Index extends Component {
 							我的
 						</View>
 						<View className='user-info'>
-							<Image
+							{/* <Image
 								className='avatar'
 								src='http://www.hndt.com/podcast/1111/res/xtmZ0Bee.png?1508751589195'
-							/>
-							<View className='nick-name'>昵称</View>
+							/> */}
+							<OpenData type='userAvatarUrl' className='avatar' />
+							<View className='nick-name'>
+								<OpenData type='userNickName' />
+							</View>
 						</View>
 					</View>
 					<MyTabBar user='test' onTabSwitchCb={this.tabSwitchCb.bind(this)} />
