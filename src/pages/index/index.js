@@ -1,47 +1,51 @@
-import Taro, { Component } from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
+import Taro, { Component } from '@tarojs/taro'
+import { View, Text } from '@tarojs/components'
 
-import './index.scss';
+import './index.scss'
 
-import LogoSchHead from '../../components/logoSchHead';
-import SwiperWrap from '../../components/swiperWrap';
-import HomeType from '../../components/homeType';
-import HomeHot from '../../components/homeHot';
-import HomeLive from '../../components/homeLive';
+import SwiperWrap from '../../components/swiperWrap'
+
+import HomeHot from '../../components/homeHot'
+
+import RadioList from '../../components/radioList'
 
 export default class Index extends Component {
-	config = {
-		navigationBarTitleText: '首页',
-		navigationBarTextStyle: 'white'
-		// disableScroll: true
-	};
-	constructor(props) {
-		super(props);
-	}
+  config = {
+    navigationBarTitleText: '河南 RADIO',
+    navigationBarTextStyle: 'white'
+    // disableScroll: true
+  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      isType: true
+    }
+  }
 
-	componentWillMount() {}
+  componentWillMount() {}
 
-	componentDidMount() {}
+  componentDidMount() {}
 
-	componentWillUnmount() {}
+  componentWillUnmount() {}
 
-	componentDidShow() {}
+  componentDidShow() {}
 
-	componentDidHide() {}
+  componentDidHide() {}
 
-	render() {
-		let fixedHead = true;
+  render() {
+    let fixedHead = true
 
-		return (
-			<View className='index'>
-				<LogoSchHead fixedHead={fixedHead} />
-				<SwiperWrap />
-				<HomeType />
-				<View className='line-h' />
-				<HomeHot />
-				<View className='line-h' />
-				<HomeLive />
-			</View>
-		);
-	}
+    return (
+      <View className="index">
+        {this.state.isType ? (
+          <View>
+            <SwiperWrap />
+            <HomeHot />
+          </View>
+        ) : (
+          <RadioList dataList={[1, 2, 3, 4, 5, 6]} />
+        )}
+      </View>
+    )
+  }
 }

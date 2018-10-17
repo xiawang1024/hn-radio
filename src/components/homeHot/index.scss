@@ -1,67 +1,69 @@
 .home-hot {
-	width: 750px;
-	padding: 10px 20px;
-	box-sizing: border-box;
-	.head-wrap {
-		width: 100%;
-		.icon-head {
-			width: 14px;
-			height: 19px;
-		}
-		.text {
-			margin-left: 12px;
-			font-size: 30px;
-		}
-	}
-	.list-wrap {
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		box-sizing: border-box;
-		.item {
-			flex: 0 0 224px;
-			margin: 13px 0;
-			.logo-wrap {
-				position: relative;
-				width: 224px;
-				height: 224px;
-				border-radius: 8px;
-				overflow: hidden;
-				.logo {
-					width: 100%;
-					height: 100%;
-				}
-				.play-num-wrap {
-					display: flex;
-					align-items: center;
-					position: absolute;
-					z-index: 10;
-					left: 0;
-					bottom: 0;
-					width: 100%;
-					height: 30px;
-					background: rgba(0, 0, 0, 0.5);
-					.icon-play {
-						margin-left: 12px;
-						width: 11px;
-						height: 14px;
-					}
-					.num {
-						margin-left: 8px;
-						font-size: 22px;
-						color: #fff;
-					}
-				}
-			}
-			.name {
-				width: 224px;
-				padding: 4px 0;
-				font-size: 26px;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				overflow: hidden;
-			}
-		}
-	}
+  width: 750px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  .head-wrap {
+    width: 100%;
+    .icon-head {
+      width: 14px;
+      height: 19px;
+    }
+    .text {
+      margin-left: 12px;
+      font-size: 30px;
+    }
+  }
+  .list-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; // justify-content: space-between;
+    box-sizing: border-box;
+    .item {
+      flex: 0 0 224px;
+      margin: 15px 19px 15px 0;
+      &:nth-child(3n) {
+        margin-right: 0
+      }
+      .logo-wrap {
+        position: relative;
+        width: 224px;
+        height: 224px;
+        border-radius: 8px;
+        overflow: hidden;
+        .logo {
+          width: 100%;
+          height: 100%;
+        }
+        .play-num-wrap {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          z-index: 10;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 30px;
+          background: rgba(0, 0, 0, 0.5);
+          .icon-play {
+            margin-left: 12px;
+            width: 11px;
+            height: 14px;
+          }
+          .num {
+            margin-left: 8px;
+            font-size: 22px;
+            color: #fff;
+          }
+        }
+      }
+      .name {
+        width: 224px;
+        padding: 4px 0;
+        font-size: 26px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
 }
