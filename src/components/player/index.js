@@ -3,11 +3,15 @@ import { View, Image } from '@tarojs/components'
 
 import './index.scss'
 
+import PlayInfo from '../playInfo'
+import PlayList from '../playList'
+
 export default class Player extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isPlay: true
+      isPlay: true,
+      isShowInfo: false
     }
   }
 
@@ -34,9 +38,18 @@ export default class Player extends Component {
     console.log('------------------------------------')
     this.setState({ isPlay })
   }
-
+  onCloseInfo = () => {
+    this.setState({
+      isShowInfo: false
+    })
+  }
+  onOpenInfo = () => {
+    this.setState({
+      isShowInfo: true
+    })
+  }
   render() {
-    let { isPlay } = this.state
+    let { isPlay, isShowInfo } = this.state
     return (
       <View className="player-box">
         <View className="bg-wrap">
@@ -58,7 +71,7 @@ export default class Player extends Component {
         </View>
 
         <View className="ctrl-wrap">
-          <View className="info">
+          <View className="info" onClick={this.onOpenInfo}>
             <Image className="icon-info" src={require('./icon-info.png')} />
           </View>
           <View className="btn-wrap">
@@ -82,6 +95,7 @@ export default class Player extends Component {
             <Image className="icon-list" src={require('./icon-list.png')} />
           </View>
         </View>
+        {isShowInfo ? <PlayInfo onCloseInfo={this.onCloseInfo} /> : ''}
       </View>
     )
   }
