@@ -11,15 +11,14 @@ class App extends Component {
       'pages/index/index',
       'pages/radio/index',
       'pages/onDemand/index',
-      'pages/my/index',
-      'pages/type/index'
+      'pages/my/index'
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#ed3a40',
+      navigationBarBackgroundColor: '#c20d23',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black',
-      backgroundColorTop: '#ed3a40'
+      backgroundColorTop: '#c20d23'
       // navigationStyle: 'custom'
     },
     tabBar: {

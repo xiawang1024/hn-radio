@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Slider } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 
 import './index.scss'
 
@@ -55,11 +55,32 @@ export default class Player extends Component {
               src="http://program.hndt.com/files/images/2017/12/14/1513241881377763.png"
             />
           </View>
-          <Slider step="1" value="50" blockSize="12" />
         </View>
 
-        <View className="btn" onClick={this.playSwitch}>
-          播放暂停
+        <View className="ctrl-wrap">
+          <View className="info">
+            <Image className="icon-info" src={require('./icon-info.png')} />
+          </View>
+          <View className="btn-wrap">
+            <Image className="icon-prev" src={require('./icon-prev.png')} />
+            <View className="icon-play-wrap" onClick={this.playSwitch}>
+              {isPlay ? (
+                <Image
+                  className="icon-play-pause"
+                  src={require('./icon-pause.png')}
+                />
+              ) : (
+                <Image
+                  className="icon-play-pause"
+                  src={require('./icon-play.png')}
+                />
+              )}
+            </View>
+            <Image className="icon-next" src={require('./icon-next.png')} />
+          </View>
+          <View className="list">
+            <Image className="icon-list" src={require('./icon-list.png')} />
+          </View>
         </View>
       </View>
     )
