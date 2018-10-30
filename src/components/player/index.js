@@ -6,18 +6,25 @@ import './index.scss'
 import PlayInfo from '../playInfo'
 import PlayList from '../playList'
 
+import dataList from '../../api'
+const innerAudioContext = Taro.createInnerAudioContext()
+
 export default class Player extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isPlayInfo: {},
       isPlay: true,
-      isShowInfo: false
+      isShowInfo: false,
+      isShowList: false
     }
   }
 
   componentWillMount() {}
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.selectPlay('117')
+  }
 
   componentWillUnmount() {}
 
@@ -33,9 +40,7 @@ export default class Player extends Component {
     } else {
       isPlay = true
     }
-    console.log('------------------------------------')
-    console.log(isPlay)
-    console.log('------------------------------------')
+
     this.setState({ isPlay })
   }
   onCloseInfo = () => {
@@ -48,25 +53,39 @@ export default class Player extends Component {
       isShowInfo: true
     })
   }
+  onCloseList = () => {
+    this.setState({
+      isShowList: false
+    })
+  }
+  onOpenList = () => {
+    this.setState({
+      isShowList: true
+    })
+  }
+  selectPlay = cid => {
+    let selected = dataList.filter(item => item.cid == cid)
+
+    this.setState({
+      isPlayInfo: selected[0]
+    })
+    innerAudioContext.src = selected[0].streams[0]
+  }
+  onSwitchPlay = cid => {
+    this.selectPlay(cid)
+  }
   render() {
-    let { isPlay, isShowInfo } = this.state
+    let { isPlay, isShowInfo, isShowList, isPlayInfo } = this.state
     return (
       <View className="player-box">
         <View className="bg-wrap">
-          <Image
-            className="logo-bg"
-            src="http://program.hndt.com/files/images/2017/12/14/1513241881377763.png"
-            mode="aspectFill"
-          />
+          <Image className="logo-bg" src={isPlayInfo.image} mode="aspectFill" />
         </View>
 
         <View className="player-wrap">
           <View className={isPlay ? 'logo-wrap playing' : 'logo-wrap'}>
             <Image className="logo-bg" src={require('./logo-bg.png')} />
-            <Image
-              className="logo"
-              src="http://program.hndt.com/files/images/2017/12/14/1513241881377763.png"
-            />
+            <Image className="logo" src={isPlayInfo.image} />
           </View>
         </View>
 
@@ -91,11 +110,19 @@ export default class Player extends Component {
             </View>
             <Image className="icon-next" src={require('./icon-next.png')} />
           </View>
-          <View className="list">
+          <View className="list" onClick={this.onOpenList}>
             <Image className="icon-list" src={require('./icon-list.png')} />
           </View>
         </View>
         {isShowInfo ? <PlayInfo onCloseInfo={this.onCloseInfo} /> : ''}
+        {isShowList ? (
+          <PlayList
+            onCloseList={this.onCloseList}
+            onSwitchPlay={this.onSwitchPlay}
+          />
+        ) : (
+          ''
+        )}
       </View>
     )
   }

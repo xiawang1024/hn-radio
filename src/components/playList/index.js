@@ -1,10 +1,14 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Image, Text, ScrollView } from '@tarojs/components'
 import './index.scss'
 
+import dataList from '../../api'
 export default class PlayList extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      isPlayIndex: 117
+    }
   }
 
   componentWillMount() {}
@@ -17,24 +21,50 @@ export default class PlayList extends Component {
 
   componentDidHide() {}
 
+  closeList = () => {
+    let { onCloseList } = this.props
+    onCloseList()
+  }
+
+  switchPlay = cid => {
+    this.setState({
+      isPlayIndex: cid
+    })
+    let { onSwitchPlay } = this.props
+    onSwitchPlay(cid)
+  }
+
   render() {
+    let { isPlayIndex } = this.state
     return (
       <View className="play-list">
-        <View className="title wrap">
-          <View className="label">电台名称：</View>
-          <View className="value">经典FM音乐台</View>
-        </View>
-        <View className="desc wrap">
-          <View className="label">内容简介：</View>
-          <View className="value">
-            经典FM音乐台经典FM音乐台经典FM音乐台经典FM音乐台
-          </View>
-        </View>
-        <View className="time wrap">
-          <View className="label">播放时段：</View>
-          <View className="value">全天</View>
-        </View>
-        <View className="icon">
+        <ScrollView
+          className="list-wrap"
+          scrollY
+          scrollWithAnimation
+          scrollTop="0"
+        >
+          {dataList.map((item, index) => {
+            return (
+              <View
+                className="item"
+                key={item.cid}
+                onClick={this.switchPlay.bind(this, item.cid)}
+              >
+                <Image
+                  className={
+                    isPlayIndex == item.cid ? 'icon-play' : 'icon-play none'
+                  }
+                  src={require('./icon-play.png')}
+                />
+                <Text className={isPlayIndex == item.cid ? 'name red' : 'name'}>
+                  {item.name}
+                </Text>
+              </View>
+            )
+          })}
+        </ScrollView>
+        <View className="icon" onClick={this.closeList}>
           <Image className="icon-close" src={require('./icon-close.png')} />
         </View>
       </View>

@@ -9,19 +9,30 @@
   border-top-right-radius: 20px;
   padding: 10px 0;
   box-sizing: border-box;
-  .wrap {
-    display: flex;
+  .list-wrap {
     width: 100%;
-    border-bottom: 1px solid #bbb;
-    padding: 30px;
-    font-size: 30px;
+    height: 50vh;
     box-sizing: border-box;
-    .label {
-      flex: 0 0 165px;
-      width: 165px;
-    }
-    .value {
-      line-height: 1.5;
+    .item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 35px;
+      border-bottom: 1px solid #c1c1c1;
+      font-size: 30px;
+      .icon-play {
+        width: 14px;
+        height: 19px;
+        &.none {
+          display: none;
+        }
+      }
+      .name {
+        margin-left: 8px;
+        &.red {
+          color: #c20d24
+        }
+      }
     }
   }
   .icon {
