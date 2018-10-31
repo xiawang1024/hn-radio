@@ -7,11 +7,11 @@ import './app.scss'
 class App extends Component {
   config = {
     pages: [
+      'pages/my/index',
       'pages/player/index',
       'pages/index/index',
       'pages/radio/index',
-      'pages/onDemand/index',
-      'pages/my/index'
+      'pages/onDemand/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -21,6 +21,7 @@ class App extends Component {
       backgroundColorTop: '#c20d23'
       // navigationStyle: 'custom'
     },
+    requiredBackgroundModes: ['audio'],
     tabBar: {
       color: '#999',
       selectedColor: '#c20d23',
@@ -33,7 +34,7 @@ class App extends Component {
           text: '发现'
         },
         {
-          pagePath: 'pages/radio/index',
+          pagePath: 'pages/my/index',
           iconPath: './icons/tab-20.png',
           selectedIconPath: './icons/tab-21.png',
           text: '我的'

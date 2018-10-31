@@ -5,6 +5,7 @@ import MyTabBar from '../../components/myTabBar'
 import MyList from '../../components/myList'
 import './index.scss'
 
+import dataList from '../../api'
 export default class Index extends Component {
   config = {
     navigationBarTitleText: '我的',
@@ -15,30 +16,19 @@ export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      statusBarHeight: 0,
-      titleBarHeight: 0,
-      headHeight: 0,
-      tabType: 0, // 0 收藏，1 历史
-      dataList: [],
+      tabType: 1, // 0 收藏，1 历史
+      historyList: [],
       page: 10
     }
   }
 
-  componentWillMount() {
-    this.setState({
-      statusBarHeight: getGlobalData('statusBarHeight'),
-      titleBarHeight: getGlobalData('titleBarHeight'),
-      headHeight: getGlobalData('headHeight')
-    })
-  }
+  componentWillMount() {}
 
   componentDidMount() {
-    let dataList = [...Array(10).keys()]
-    this.setState({ dataList })
-
     Taro.login({}).then(res => {
       console.log(res)
     })
+    this.getPlayHistory()
   }
 
   componentWillUnmount() {}
@@ -66,16 +56,37 @@ export default class Index extends Component {
     }, 500)
   }
   pageAddOne = page => {
-    let dataList = [...Array(page).keys()]
-    this.setState({ dataList })
+    let historyList = [...Array(page).keys()]
+    this.setState({ historyList })
+  }
+
+  getPlayHistory = () => {
+    let keyName = 'history_list'
+    Taro.getStorage({ key: keyName })
+      .then(res => {
+        this.getPlayInfoHistory(res.data)
+      })
+      .catch(err => {
+        // 没有历史记录
+        console.log(err)
+      })
+  }
+  getPlayInfoHistory = data => {
+    let historyDataList = data.map((itemCid, index) => {
+      let itemHistorys = dataList.filter(item => {
+        return item.cid == itemCid.cid
+      })
+      let itemHistory = itemHistorys[0]
+      itemHistory.timePlay = itemCid.time
+      return itemHistory
+    })
+    this.setState({
+      historyList: historyDataList
+    })
   }
   render() {
-    let { statusBarHeight, titleBarHeight, dataList, tabType } = this.state
-    let headStyle = {
-      height: `${titleBarHeight}px`,
-      lineHeight: `${titleBarHeight}px`,
-      paddingTop: `${statusBarHeight}px`
-    }
+    let { historyList, tabType } = this.state
+
     let isHasMore = true
 
     return (
@@ -92,7 +103,11 @@ export default class Index extends Component {
           <MyTabBar user="test" onTabSwitchCb={this.tabSwitchCb.bind(this)} />
         </View>
         <View>{this.state.msg}</View>
-        <MyList dataList={dataList} isHasMore={isHasMore} tabType={tabType} />
+        <MyList
+          dataList={historyList}
+          isHasMore={isHasMore}
+          tabType={tabType}
+        />
       </View>
     )
   }

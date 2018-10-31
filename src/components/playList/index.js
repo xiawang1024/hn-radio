@@ -13,7 +13,12 @@ export default class PlayList extends Component {
 
   componentWillMount() {}
 
-  componentDidMount() {}
+  componentDidMount() {
+    let { playCid } = this.props
+    this.setState({
+      isPlayIndex: playCid
+    })
+  }
 
   componentWillUnmount() {}
 

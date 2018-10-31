@@ -21,17 +21,16 @@ export default class PlayInfo extends Component {
     onCloseInfo()
   }
   render() {
+    let { playInfo } = this.props
     return (
       <View className="play-info">
         <View className="title wrap">
           <View className="label">电台名称：</View>
-          <View className="value">经典FM音乐台</View>
+          <View className="value">{playInfo.name}</View>
         </View>
         <View className="desc wrap">
           <View className="label">内容简介：</View>
-          <View className="value">
-            经典FM音乐台经典FM音乐台经典FM音乐台经典FM音乐台
-          </View>
+          <View className="value">{playInfo.description}</View>
         </View>
         <View className="time wrap">
           <View className="label">播放时段：</View>

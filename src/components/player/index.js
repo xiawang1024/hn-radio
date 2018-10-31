@@ -7,7 +7,7 @@ import PlayInfo from '../playInfo'
 import PlayList from '../playList'
 
 import dataList from '../../api'
-const innerAudioContext = Taro.createInnerAudioContext()
+const backgroundAudioManager = Taro.getBackgroundAudioManager()
 
 export default class Player extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ export default class Player extends Component {
   componentWillMount() {}
 
   componentDidMount() {
+    this.playEventListen()
     this.selectPlay('117')
   }
 
@@ -32,13 +33,28 @@ export default class Player extends Component {
 
   componentDidHide() {}
 
+  playEventListen() {
+    backgroundAudioManager.onCanplay(() => {
+      Taro.hideLoading()
+    })
+    backgroundAudioManager.onPlay(() => {
+      Taro.hideLoading()
+    })
+    backgroundAudioManager.onWaiting(() => {
+      Taro.showLoading({
+        title: 'loading...'
+      })
+    })
+  }
   playSwitch(e) {
     e.preventDefault()
     let { isPlay } = this.state
     if (isPlay) {
       isPlay = false
+      backgroundAudioManager.pause()
     } else {
       isPlay = true
+      backgroundAudioManager.play()
     }
 
     this.setState({ isPlay })
@@ -65,14 +81,77 @@ export default class Player extends Component {
   }
   selectPlay = cid => {
     let selected = dataList.filter(item => item.cid == cid)
-
+    this.setPlaySrc(selected[0])
     this.setState({
       isPlayInfo: selected[0]
     })
-    innerAudioContext.src = selected[0].streams[0]
+  }
+  setPlaySrc = data => {
+    backgroundAudioManager.title = data.name
+    backgroundAudioManager.epname = data.name
+    backgroundAudioManager.coverImgUrl = data.image
+    backgroundAudioManager.protocol = 'hls'
+    backgroundAudioManager.src = data.streams[0]
+    this.playHistory(data.cid)
+  }
+  playHistory = cid => {
+    let list = []
+    let keyName = 'history_list'
+    let time = new Date().toLocaleDateString()
+    Taro.getStorage({
+      key: keyName
+    })
+      .then(res => {
+        list = res.data
+        list.push({ cid, time })
+        Taro.setStorage({ key: keyName, data: list })
+      })
+      .catch(err => {
+        list = []
+        Taro.setStorage({ key: keyName, data: list })
+        console.log(err)
+      })
   }
   onSwitchPlay = cid => {
     this.selectPlay(cid)
+  }
+  seeIndexCid = () => {
+    let { isPlayInfo } = this.state
+    let indexCid = 0
+    dataList.forEach((item, index) => {
+      if (isPlayInfo.cid == item.cid) {
+        indexCid = index
+      } else {
+        return false
+      }
+    })
+
+    return indexCid
+  }
+  clickNext = () => {
+    let len = dataList.length
+    let indexCid = this.seeIndexCid()
+    if (indexCid == len - 1) {
+      Taro.showToast({
+        title: '没有更多数据',
+        icon: 'none'
+      })
+    }
+    ++indexCid
+    let playInfo = dataList[indexCid]
+    this.selectPlay(playInfo.cid)
+  }
+  clickPrev = () => {
+    let indexCid = this.seeIndexCid()
+    if (indexCid == 0) {
+      Taro.showToast({
+        title: '没有更多数据',
+        icon: 'none'
+      })
+    }
+    --indexCid
+    let playInfo = dataList[indexCid]
+    this.selectPlay(playInfo.cid)
   }
   render() {
     let { isPlay, isShowInfo, isShowList, isPlayInfo } = this.state
@@ -94,31 +173,41 @@ export default class Player extends Component {
             <Image className="icon-info" src={require('./icon-info.png')} />
           </View>
           <View className="btn-wrap">
-            <Image className="icon-prev" src={require('./icon-prev.png')} />
+            <Image
+              onClick={this.clickPrev}
+              className="icon-prev"
+              src={require('./icon-prev.png')}
+            />
             <View className="icon-play-wrap" onClick={this.playSwitch}>
-              {isPlay ? (
-                <Image
-                  className="icon-play-pause"
-                  src={require('./icon-pause.png')}
-                />
-              ) : (
-                <Image
-                  className="icon-play-pause"
-                  src={require('./icon-play.png')}
-                />
-              )}
+              <Image
+                className="icon-play-pause"
+                src={
+                  isPlay
+                    ? require('./icon-pause.png')
+                    : require('./icon-play.png')
+                }
+              />
             </View>
-            <Image className="icon-next" src={require('./icon-next.png')} />
+            <Image
+              onClick={this.clickNext}
+              className="icon-next"
+              src={require('./icon-next.png')}
+            />
           </View>
           <View className="list" onClick={this.onOpenList}>
             <Image className="icon-list" src={require('./icon-list.png')} />
           </View>
         </View>
-        {isShowInfo ? <PlayInfo onCloseInfo={this.onCloseInfo} /> : ''}
+        {isShowInfo ? (
+          <PlayInfo onCloseInfo={this.onCloseInfo} playInfo={isPlayInfo} />
+        ) : (
+          ''
+        )}
         {isShowList ? (
           <PlayList
             onCloseList={this.onCloseList}
             onSwitchPlay={this.onSwitchPlay}
+            playCid={isPlayInfo.cid}
           />
         ) : (
           ''
