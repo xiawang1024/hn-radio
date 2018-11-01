@@ -6,11 +6,13 @@ import MyList from '../../components/myList'
 import './index.scss'
 
 import dataList from '../../api'
+import { start } from 'pretty-error'
 export default class Index extends Component {
   config = {
     navigationBarTitleText: '我的',
     navigationBarTextStyle: 'white',
-    onReachBottomDistance: 50
+    onReachBottomDistance: 50,
+    enablePullDownRefresh: true
     // disableScroll: true
   }
   constructor(props) {
@@ -18,7 +20,8 @@ export default class Index extends Component {
     this.state = {
       tabType: 1, // 0 收藏，1 历史
       historyList: [],
-      page: 10
+      page: 0,
+      isHasMore: false
     }
   }
 
@@ -28,10 +31,14 @@ export default class Index extends Component {
     Taro.login({}).then(res => {
       console.log(res)
     })
-    this.getPlayHistory()
+    this.getPlayHistory(0)
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.setState({
+      page: 0
+    })
+  }
 
   componentDidShow() {}
 
@@ -45,26 +52,58 @@ export default class Index extends Component {
       duration: 500
     })
   }
+  onPullDownRefresh() {
+    Taro.showLoading({ title: 'loading...' })
+    this.getPlayHistory(0)
+    this.setState({
+      page: 0
+    })
+    setTimeout(() => {
+      Taro.hideLoading()
+      Taro.stopPullDownRefresh()
+    }, 500)
+  }
   onReachBottom() {
     console.log('上拉加载更多开始')
-    let { page } = this.state
+    let { page, isHasMore } = this.state
     //模拟数据
-    page += 10
+    if (isHasMore) {
+      ++page
+    }
     this.setState({ page })
     setTimeout(() => {
-      this.pageAddOne(page)
+      // this.pageAddOne(page)
+      this.getPlayHistory(page)
     }, 500)
   }
   pageAddOne = page => {
-    let historyList = [...Array(page).keys()]
-    this.setState({ historyList })
+    // let historyList = [...Array(page).keys()]
+    // this.setState({ historyList })
   }
 
-  getPlayHistory = () => {
+  getPlayHistory = page => {
+    let startIndex = page * 10
     let keyName = 'history_list'
     Taro.getStorage({ key: keyName })
       .then(res => {
-        this.getPlayInfoHistory(res.data)
+        let reverseList = res.data.reverse()
+        let endIndex = startIndex + 10
+        let len = reverseList.length
+        if (startIndex < len && len != 0) {
+          this.setState({
+            isHasMore: true
+          })
+        } else {
+          this.setState({
+            isHasMore: false
+          })
+        }
+        if (endIndex >= len) {
+          endIndex = len
+        }
+        let tenList = reverseList.slice(startIndex, endIndex)
+
+        this.getPlayInfoHistory(tenList)
       })
       .catch(err => {
         // 没有历史记录
@@ -80,14 +119,15 @@ export default class Index extends Component {
       itemHistory.timePlay = itemCid.time
       return itemHistory
     })
+    let { historyList } = this.state
+    historyList = historyList.concat(historyDataList)
+
     this.setState({
-      historyList: historyDataList
+      historyList
     })
   }
   render() {
-    let { historyList, tabType } = this.state
-
-    let isHasMore = true
+    let { historyList, tabType, isHasMore } = this.state
 
     return (
       <View className="index">

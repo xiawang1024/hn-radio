@@ -24,7 +24,12 @@ export default class Player extends Component {
 
   componentDidMount() {
     this.playEventListen()
-    this.selectPlay('117')
+    let { cid } = this.props
+    // console.log('------------------------------------')
+    console.log(cid)
+    // console.log('------------------------------------')
+
+    this.selectPlay(cid)
   }
 
   componentWillUnmount() {}
@@ -94,10 +99,25 @@ export default class Player extends Component {
     backgroundAudioManager.src = data.streams[0]
     this.playHistory(data.cid)
   }
+  formatDate = () => {
+    let date = new Date()
+
+    let year = date.getFullYear(),
+      month = date.getMonth() + 1, //月份是从0开始的
+      day = date.getDate(),
+      hour = date.getHours(),
+      min = date.getMinutes(),
+      sec = date.getSeconds()
+    min = min < 10 ? '0' + min : min
+    sec = sec < 10 ? '0' + sec : sec
+    let newTime =
+      year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec
+    return newTime
+  }
   playHistory = cid => {
     let list = []
     let keyName = 'history_list'
-    let time = new Date().toLocaleDateString()
+    let time = this.formatDate()
     Taro.getStorage({
       key: keyName
     })

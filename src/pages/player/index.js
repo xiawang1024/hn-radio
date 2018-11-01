@@ -25,9 +25,10 @@ export default class Radio extends Component {
   componentDidHide() {}
 
   render() {
+    let cid = this.$router.params.cid
     return (
       <View className="index">
-        <Player />
+        <Player cid={cid} />
       </View>
     )
   }

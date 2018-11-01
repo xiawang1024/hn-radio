@@ -18,6 +18,12 @@ export default class HomeHot extends Component {
 
   componentDidHide() {}
 
+  clickToPlay = cid => {
+    Taro.navigateTo({
+      url: `/pages/player/index?cid=${cid}`
+    })
+  }
+
   render() {
     return (
       <View className="home-hot">
@@ -28,7 +34,11 @@ export default class HomeHot extends Component {
         <View className="list-wrap">
           {dataList.map((item, index) => {
             return (
-              <View className="item" key={index.toString()}>
+              <View
+                className="item"
+                key={index.toString()}
+                onClick={this.clickToPlay.bind(this, item.cid)}
+              >
                 <View className="logo-wrap">
                   <Image className="logo" src={item.image} />
                   <View className="play-num-wrap">
