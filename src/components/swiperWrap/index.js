@@ -6,18 +6,12 @@ import { get as getGlobalData } from '../../global_data'
 export default class SwiperWrap extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      headHeight: 0
-    }
+    this.state = {}
   }
 
   componentWillMount() {}
 
-  componentDidMount() {
-    this.setState({
-      headHeight: getGlobalData('headHeight')
-    })
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {}
 
@@ -25,11 +19,15 @@ export default class SwiperWrap extends Component {
 
   componentDidHide() {}
 
+  cliclToPlay = cid => {
+    let url = `/pages/player/index?cid=${cid}`
+    Taro.navigateTo({
+      url
+    })
+  }
+
   render() {
-    let { headHeight } = this.state
-    let paddingTopStyle = {
-      marginTop: `${headHeight}px`
-    }
+    let swipers = [{ cid: '120' }, { cid: '120' }, { cid: '120' }]
     return (
       <Swiper
         className="swiper-wrap"
@@ -39,27 +37,18 @@ export default class SwiperWrap extends Component {
         indicatorDots
         autoplay
       >
-        <SwiperItem>
-          <Image
-            src="http://www.hndt.com/brand/612/res/pi3F3ZID.jpg?1497345245233"
-            className="item-img"
-            mode="aspectFill"
-          />
-        </SwiperItem>
-        <SwiperItem>
-          <Image
-            src="http://www.hndt.com/brand/612/res/pi3F3ZID.jpg?1497345245233"
-            className="item-img"
-            mode="aspectFill"
-          />
-        </SwiperItem>
-        <SwiperItem>
-          <Image
-            src="http://www.hndt.com/brand/612/res/pi3F3ZID.jpg?1497345245233"
-            className="item-img"
-            mode="aspectFill"
-          />
-        </SwiperItem>
+        {swipers.map((item, index) => {
+          return (
+            <SwiperItem key={index}>
+              <Image
+                onClick={this.cliclToPlay.bind(this, item.cid)}
+                src="http://www.hndt.com/original/201811/01/2254685/res/-174014083_wechat.jpg"
+                className="item-img"
+                mode="aspectFill"
+              />
+            </SwiperItem>
+          )
+        })}
       </Swiper>
     )
   }

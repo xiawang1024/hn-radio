@@ -6,7 +6,7 @@ import Player from '../../components/player'
 import dataList from '../../api'
 export default class Radio extends Component {
   config = {
-    navigationBarTitleText: '分类',
+    navigationBarTitleText: '',
     navigationBarTextStyle: 'white',
     disableScroll: true
   }
@@ -16,14 +16,32 @@ export default class Radio extends Component {
 
   componentWillMount() {}
 
-  componentDidMount() {}
+  componentDidMount() {
+    // let cid = this.$router.params.cid
+    // let isPlayInfos = dataList.filter(item => {
+    //   return item.cid == cid
+    // })
+    // let isPlayInfo = isPlayInfos[0]
+    // Taro.setNavigationBarTitle({
+    //   title: isPlayInfo.name
+    // })
+  }
 
   componentWillUnmount() {}
 
   componentDidShow() {}
 
   componentDidHide() {}
-
+  onShareAppMessage() {
+    let cid = this.$router.params.cid
+    let isPlayInfos = dataList.filter(item => {
+      return item.cid == cid
+    })
+    let isPlayInfo = isPlayInfos[0]
+    return {
+      title: isPlayInfo.name
+    }
+  }
   render() {
     let cid = this.$router.params.cid
     return (

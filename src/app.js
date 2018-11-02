@@ -60,7 +60,9 @@ class App extends Component {
     setGlobalData('screenWidth', screenWidth)
     setGlobalData('windowHeight', windowHeight)
   }
-  componentDidMount() {}
+  componentDidMount() {
+    let params = this.$router.params
+  }
 
   componentDidShow() {}
 

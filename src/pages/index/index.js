@@ -31,19 +31,17 @@ export default class Index extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
-
+  onShareAppMessage() {}
   render() {
-    let fixedHead = true
-
     return (
       <View className="index">
         {this.state.isType ? (
           <View>
             <SwiperWrap />
-            <HomeHot />
+            <RadioList />
           </View>
         ) : (
-          <RadioList dataList={[1, 2, 3, 4, 5, 6]} />
+          <HomeHot />
         )}
       </View>
     )

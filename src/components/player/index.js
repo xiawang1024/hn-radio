@@ -98,6 +98,9 @@ export default class Player extends Component {
     backgroundAudioManager.protocol = 'hls'
     backgroundAudioManager.src = data.streams[0]
     this.playHistory(data.cid)
+    Taro.setNavigationBarTitle({
+      title: data.name
+    })
   }
   formatDate = () => {
     let date = new Date()
@@ -173,6 +176,7 @@ export default class Player extends Component {
     let playInfo = dataList[indexCid]
     this.selectPlay(playInfo.cid)
   }
+
   render() {
     let { isPlay, isShowInfo, isShowList, isPlayInfo } = this.state
     return (

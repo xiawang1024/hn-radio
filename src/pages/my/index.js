@@ -54,6 +54,9 @@ export default class Index extends Component {
   }
   onPullDownRefresh() {
     Taro.showLoading({ title: 'loading...' })
+    this.setState({
+      historyList: []
+    })
     this.getPlayHistory(0)
     this.setState({
       page: 0
@@ -125,6 +128,13 @@ export default class Index extends Component {
     this.setState({
       historyList
     })
+  }
+  onShareAppMessage() {}
+  onTabItemTap(item) {
+    console.log(item)
+    if (item.index == 1) {
+      this.getPlayHistory(0)
+    }
   }
   render() {
     let { historyList, tabType, isHasMore } = this.state

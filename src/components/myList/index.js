@@ -22,12 +22,24 @@ export default class MyTabBar extends Component {
 
   componentDidHide() {}
 
+  clickToPlayer = cid => {
+    Taro.navigateTo({
+      url: `/pages/player/index?cid=${cid}`
+    })
+  }
+
+  onShareAppMessage() {}
+
   render() {
     const { dataList, isHasMore, tabType } = this.props
     return (
       <View className="my-list">
         {dataList.map((item, index) => (
-          <View className="item" key={index}>
+          <View
+            className="item"
+            key={index}
+            onClick={this.clickToPlayer.bind(this, item.cid)}
+          >
             <View className="logo-wrap">
               <Image className="logo" src={item.image} />
               <View className="logo-mark" />

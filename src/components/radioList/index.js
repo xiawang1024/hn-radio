@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 
 import './index.scss'
-import SwiperWrap from '../swiperWrap'
+import dataList from '../../api'
 
 export default class MyTabBar extends Component {
   static defaultProps = {
@@ -21,18 +21,21 @@ export default class MyTabBar extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
-
+  clickToPlay = cid => {
+    Taro.navigateTo({
+      url: `/pages/player/index?cid=${cid}`
+    })
+  }
   render() {
-    const { dataList, isHasMore, tabType } = this.props
-
-    //是否收藏
-    let isCollected = false
     return (
       <View className="radio-list">
-        <SwiperWrap />
         <View className="list-wrap">
-          {dataList.map((item, index) => (
-            <View className="item" key={index}>
+          {dataList.map(item => (
+            <View
+              className="item"
+              key={item.cid}
+              onClick={this.clickToPlay.bind(this, item.cid)}
+            >
               <View className="logo-wrap">
                 <Image className="logo" src={item.image} />
                 <View className="logo-mark" />
@@ -45,8 +48,8 @@ export default class MyTabBar extends Component {
                 </View>
                 <View className="desc-wrap">{item.description}</View>
               </View>
-              <View className="other-wrap">
-                <View className="collect-wrap">
+              {/* <View className="other-wrap"> */}
+              {/* <View className="collect-wrap">
                   <Image
                     src={
                       isCollected
@@ -57,9 +60,9 @@ export default class MyTabBar extends Component {
                   />
 
                   <Text className="text-collect">收藏</Text>
-                </View>
-                {/* <View className='time-wrap'>2018.07.21</View> */}
-              </View>
+                </View> */}
+              {/* <View className='time-wrap'>2018.07.21</View> */}
+              {/* </View> */}
               <View className="play-num">
                 <Image
                   className="icon-play-num"
@@ -69,9 +72,6 @@ export default class MyTabBar extends Component {
               </View>
             </View>
           ))}
-          <View className="more-tips">
-            {isHasMore ? <Text>加载中...</Text> : <Text>暂无更多数据</Text>}
-          </View>
         </View>
       </View>
     )
