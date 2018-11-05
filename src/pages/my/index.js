@@ -72,12 +72,12 @@ export default class Index extends Component {
     //模拟数据
     if (isHasMore) {
       ++page
+      this.setState({ page })
+      setTimeout(() => {
+        // this.pageAddOne(page)
+        this.getPlayHistory(page)
+      }, 300)
     }
-    this.setState({ page })
-    setTimeout(() => {
-      // this.pageAddOne(page)
-      this.getPlayHistory(page)
-    }, 500)
   }
   pageAddOne = page => {
     // let historyList = [...Array(page).keys()]
@@ -92,7 +92,8 @@ export default class Index extends Component {
         let reverseList = res.data.reverse()
         let endIndex = startIndex + 10
         let len = reverseList.length
-        if (startIndex < len && len != 0) {
+
+        if (startIndex < len && len > 10) {
           this.setState({
             isHasMore: true
           })

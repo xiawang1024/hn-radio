@@ -7,6 +7,8 @@ import PlayInfo from '../playInfo'
 import PlayList from '../playList'
 
 import dataList from '../../api'
+import { AddCount } from '../../api/index'
+
 const backgroundAudioManager = Taro.getBackgroundAudioManager()
 
 export default class Player extends Component {
@@ -47,7 +49,7 @@ export default class Player extends Component {
     })
     backgroundAudioManager.onWaiting(() => {
       Taro.showLoading({
-        title: 'loading...'
+        title: '切换中...'
       })
     })
   }
@@ -98,10 +100,12 @@ export default class Player extends Component {
     backgroundAudioManager.protocol = 'hls'
     backgroundAudioManager.src = data.streams[0]
     this.playHistory(data.cid)
+    AddCount(parseInt(data.cid))
     Taro.setNavigationBarTitle({
       title: data.name
     })
   }
+
   formatDate = () => {
     let date = new Date()
 
