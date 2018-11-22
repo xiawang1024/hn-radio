@@ -184,31 +184,31 @@ export default class Player extends Component {
   render() {
     let { isPlay, isShowInfo, isShowList, isPlayInfo } = this.state
     return (
-      <View className="player-box">
-        <View className="bg-wrap">
-          <Image className="logo-bg" src={isPlayInfo.image} mode="aspectFill" />
+      <View className='player-box'>
+        <View className='bg-wrap'>
+          <Image className='logo-bg' src={isPlayInfo.image} mode='aspectFill' />
         </View>
 
-        <View className="player-wrap">
+        <View className='player-wrap'>
           <View className={isPlay ? 'logo-wrap playing' : 'logo-wrap'}>
-            <Image className="logo-bg" src={require('./logo-bg.png')} />
-            <Image className="logo" src={isPlayInfo.image} />
+            <Image className='logo-bg' src={require('./logo-bg.png')} />
+            <Image className='logo' src={isPlayInfo.image} />
           </View>
         </View>
 
-        <View className="ctrl-wrap">
-          <View className="info" onClick={this.onOpenInfo}>
-            <Image className="icon-info" src={require('./icon-info.png')} />
+        <View className='ctrl-wrap'>
+          <View className='info' onClick={this.onOpenInfo}>
+            <Image className='icon-info' src={require('./icon-info.png')} />
           </View>
-          <View className="btn-wrap">
+          <View className='btn-wrap'>
             <Image
               onClick={this.clickPrev}
-              className="icon-prev"
+              className='icon-prev'
               src={require('./icon-prev.png')}
             />
-            <View className="icon-play-wrap" onClick={this.playSwitch}>
+            <View className='icon-play-wrap' onClick={this.playSwitch}>
               <Image
-                className="icon-play-pause"
+                className='icon-play-pause'
                 src={
                   isPlay
                     ? require('./icon-pause.png')
@@ -218,12 +218,12 @@ export default class Player extends Component {
             </View>
             <Image
               onClick={this.clickNext}
-              className="icon-next"
+              className='icon-next'
               src={require('./icon-next.png')}
             />
           </View>
-          <View className="list" onClick={this.onOpenList}>
-            <Image className="icon-list" src={require('./icon-list.png')} />
+          <View className='list' onClick={this.onOpenList}>
+            <Image className='icon-list' src={require('./icon-list.png')} />
           </View>
         </View>
         {isShowInfo ? (

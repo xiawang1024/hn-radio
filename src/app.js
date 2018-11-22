@@ -9,6 +9,7 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/my/index',
+      'pages/webView/index',
       'pages/player/index',
       'pages/radio/index',
       'pages/onDemand/index'

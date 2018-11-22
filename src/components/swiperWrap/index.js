@@ -20,7 +20,7 @@ export default class SwiperWrap extends Component {
   componentDidHide() {}
 
   cliclToPlay = cid => {
-    let url = `/pages/player/index?cid=${cid}`
+    let url = `/pages/webView/index?url=https://mp.weixin.qq.com/s/IlQcuga1nVzFPcbXHcc7fQ`
     Taro.navigateTo({
       url
     })
@@ -30,9 +30,9 @@ export default class SwiperWrap extends Component {
     let swipers = [{ cid: '120' }, { cid: '120' }, { cid: '120' }]
     return (
       <Swiper
-        className="swiper-wrap"
-        indicatorColor="#efefef"
-        indicatorActiveColor="#c20d23"
+        className='swiper-wrap'
+        indicatorColor='#efefef'
+        indicatorActiveColor='#c20d23'
         circular
         indicatorDots
         autoplay
@@ -42,9 +42,9 @@ export default class SwiperWrap extends Component {
             <SwiperItem key={index}>
               <Image
                 onClick={this.cliclToPlay.bind(this, item.cid)}
-                src="http://www.hndt.com/original/201811/01/2254685/res/-174014083_wechat.jpg"
-                className="item-img"
-                mode="aspectFill"
+                src='http://www.hndt.com/original/201811/01/2254685/res/-174014083_wechat.jpg'
+                className='item-img'
+                mode='aspectFill'
               />
             </SwiperItem>
           )

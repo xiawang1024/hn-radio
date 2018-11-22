@@ -141,17 +141,17 @@ export default class Index extends Component {
     let { historyList, tabType, isHasMore } = this.state
 
     return (
-      <View className="index">
-        <View className="fixed-head">
-          <View className="head-wrap">
-            <View className="user-info">
-              <OpenData type="userAvatarUrl" className="avatar" />
-              <View className="nick-name">
-                <OpenData type="userNickName" />
+      <View className='index'>
+        <View className='fixed-head'>
+          <View className='head-wrap'>
+            <View className='user-info'>
+              <OpenData type='userAvatarUrl' className='avatar' />
+              <View className='nick-name'>
+                <OpenData type='userNickName' />
               </View>
             </View>
           </View>
-          <MyTabBar user="test" onTabSwitchCb={this.tabSwitchCb.bind(this)} />
+          <MyTabBar user='test' onTabSwitchCb={this.tabSwitchCb.bind(this)} />
         </View>
         <View>{this.state.msg}</View>
         <MyList
