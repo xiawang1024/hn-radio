@@ -1,50 +1,50 @@
 const dataList = [
-  {
-    cid: '117',
-    description: '架起警民沟通的桥梁',
-    image: 'http://www.hndt.com/hnradio/117.jpg',
-    name: '警广之声',
-    hotline: '037165887252',
-    interact: '1',
-    streams: ['http://stream.hndt.com/live/jgzs/playlist.m3u8'],
-    video_streams: [''],
-    update_id: '13212',
-    isprograms: 1,
-    live: '《音乐斑马线》',
-    time: '16:00 - 18:00'
-  },
-  {
-    cid: '120',
-    description:
-      '星河音乐是河南广播电视台推出的专业音乐电台，音乐特点唯美、清新、高保真。在高品质音乐声中，赋予聆听者一个极大的想像空间，可以不受形式限制，自由地在无限的想像空间中驰骋。聆听者感受到了那种静夜里雪花落下轻触地面的感觉；吹过莎草的清风的干燥呼吸的感觉；远天闪电的折纹的感觉；傍晚的湖水拍打着岸边的感觉……',
-    image:
-      'http://program.hndt.com/files/images/2018/01/05/1515144881197542.png',
-    name: '星河音乐台',
-    hotline: '',
-    interact: '1',
-    streams: ['http://stream.hndt.com/live/1061/playlist.m3u8'],
-    video_streams: [''],
-    update_id: '13214',
-    isprograms: 1,
-    live: '黑胶时光',
-    time: '14:00 - 17:00'
-  },
-  {
-    cid: '11',
-    description:
-      '“天籁936”是河南省第一家以播出古典音乐为主的专业调频广播,旨在提升我省听众的文化素质，普及高雅音乐，陶冶人们情操，助力“文明河南”。',
-    image:
-      'http://program.hndt.com/files/images/2017/06/23/1498187980794598.png',
-    name: '古典音乐·天籁936',
-    hotline: '',
-    interact: '1',
-    streams: ['http://stream.hndt.com/live/gudian/playlist.m3u8'],
-    video_streams: [''],
-    update_id: '13202',
-    isprograms: 1,
-    live: '天籁晨之曲',
-    time: '15:00 - 17:00'
-  },
+  // {
+  //   cid: '117',
+  //   description: '架起警民沟通的桥梁',
+  //   image: 'http://www.hndt.com/hnradio/117.jpg',
+  //   name: '警广之声',
+  //   hotline: '037165887252',
+  //   interact: '1',
+  //   streams: ['http://stream.hndt.com/live/jgzs/playlist.m3u8'],
+  //   video_streams: [''],
+  //   update_id: '13212',
+  //   isprograms: 1,
+  //   live: '《音乐斑马线》',
+  //   time: '16:00 - 18:00'
+  // },
+  // {
+  //   cid: '120',
+  //   description:
+  //     '星河音乐是河南广播电视台推出的专业音乐电台，音乐特点唯美、清新、高保真。在高品质音乐声中，赋予聆听者一个极大的想像空间，可以不受形式限制，自由地在无限的想像空间中驰骋。聆听者感受到了那种静夜里雪花落下轻触地面的感觉；吹过莎草的清风的干燥呼吸的感觉；远天闪电的折纹的感觉；傍晚的湖水拍打着岸边的感觉……',
+  //   image:
+  //     'http://program.hndt.com/files/images/2018/01/05/1515144881197542.png',
+  //   name: '星河音乐台',
+  //   hotline: '',
+  //   interact: '1',
+  //   streams: ['http://stream.hndt.com/live/1061/playlist.m3u8'],
+  //   video_streams: [''],
+  //   update_id: '13214',
+  //   isprograms: 1,
+  //   live: '黑胶时光',
+  //   time: '14:00 - 17:00'
+  // },
+  // {
+  //   cid: '11',
+  //   description:
+  //     '“天籁936”是河南省第一家以播出古典音乐为主的专业调频广播,旨在提升我省听众的文化素质，普及高雅音乐，陶冶人们情操，助力“文明河南”。',
+  //   image:
+  //     'http://program.hndt.com/files/images/2017/06/23/1498187980794598.png',
+  //   name: '古典音乐·天籁936',
+  //   hotline: '',
+  //   interact: '1',
+  //   streams: ['http://stream.hndt.com/live/gudian/playlist.m3u8'],
+  //   video_streams: [''],
+  //   update_id: '13202',
+  //   isprograms: 1,
+  //   live: '天籁晨之曲',
+  //   time: '15:00 - 17:00'
+  // },
   {
     cid: '17',
     description:
@@ -149,69 +149,69 @@ const dataList = [
     isprograms: 0,
     live: '',
     time: ''
-  },
-  {
-    cid: '25',
-    description:
-      '国乐悠扬网络广播，是由河南人民广播电台主办的以中国古典音乐为主的纯音乐类网络广播节目，以传承民族文化，弘扬民族音乐，介绍民族乐器为节目主旨，以古筝、琵琶、扬琴、二胡等民族传统乐器为主，播放旋律优美，节奏舒缓的民族古典音乐。节目直播流全天分为八个栏目板块，分别是《民乐新韵》，《染指年华》，《文化深处》、《琴心茶韵》，《曲苑风荷》、《弦外有音》、《民族风情》、《渔舟唱晚》。',
-    image:
-      'http://program.hndt.com/files/images/2017/06/23/1498187765828570.png',
-    name: '国乐悠扬',
-    hotline: '',
-    interact: '1',
-    streams: ['http://stream.hndt.com/live/minyue/playlist.m3u8'],
-    video_streams: [''],
-    update_id: '13204',
-    isprograms: 1,
-    live: '曲苑风荷',
-    time: '15:00 - 17:00'
-  },
-  {
-    cid: '26',
-    description: '河南戏曲网络广播',
-    image:
-      'http://program.hndt.com/files/images/2017/06/23/1498187753774837.png',
-    name: '河南戏曲网络广播',
-    hotline: '',
-    interact: '0',
-    streams: ['http://stream.hndt.com/live/wangluoxiqu/playlist.m3u8'],
-    video_streams: [''],
-    update_id: 0,
-    isprograms: 0,
-    live: '',
-    time: ''
-  },
-  {
-    cid: '118',
-    description: '育婴知识、胎教音乐、儿童故事为主要内容的公益广播。',
-    image:
-      'http://program.hndt.com/files/images/2018/06/15/1529027972770543.jpg',
-    name: '易象孕育台',
-    hotline: '',
-    interact: '1',
-    streams: ['http://stream.hndt.com/live/yxsc/playlist.m3u8'],
-    video_streams: [''],
-    update_id: 0,
-    isprograms: 0,
-    live: '',
-    time: ''
-  },
-  {
-    cid: '119',
-    description:
-      '精彩节目不容错过，热点事件及时掌握。《有声文摘》汇聚国内广播电视的优秀栏目，让您释放眼睛，用耳朵来获得更多新知。',
-    image:
-      'http://program.hndt.com/files/images/2017/12/22/1513910910582954.png',
-    name: '有声文摘',
-    hotline: '',
-    interact: '1',
-    streams: ['http://stream.hndt.com/live/yswz/playlist.m3u8'],
-    video_streams: [''],
-    update_id: '13213',
-    isprograms: 1,
-    live: '《精彩音乐汇》',
-    time: '15:46 - 17:15'
   }
+  // {
+  //   cid: '25',
+  //   description:
+  //     '国乐悠扬网络广播，是由河南人民广播电台主办的以中国古典音乐为主的纯音乐类网络广播节目，以传承民族文化，弘扬民族音乐，介绍民族乐器为节目主旨，以古筝、琵琶、扬琴、二胡等民族传统乐器为主，播放旋律优美，节奏舒缓的民族古典音乐。节目直播流全天分为八个栏目板块，分别是《民乐新韵》，《染指年华》，《文化深处》、《琴心茶韵》，《曲苑风荷》、《弦外有音》、《民族风情》、《渔舟唱晚》。',
+  //   image:
+  //     'http://program.hndt.com/files/images/2017/06/23/1498187765828570.png',
+  //   name: '国乐悠扬',
+  //   hotline: '',
+  //   interact: '1',
+  //   streams: ['http://stream.hndt.com/live/minyue/playlist.m3u8'],
+  //   video_streams: [''],
+  //   update_id: '13204',
+  //   isprograms: 1,
+  //   live: '曲苑风荷',
+  //   time: '15:00 - 17:00'
+  // },
+  // {
+  //   cid: '26',
+  //   description: '河南戏曲网络广播',
+  //   image:
+  //     'http://program.hndt.com/files/images/2017/06/23/1498187753774837.png',
+  //   name: '河南戏曲网络广播',
+  //   hotline: '',
+  //   interact: '0',
+  //   streams: ['http://stream.hndt.com/live/wangluoxiqu/playlist.m3u8'],
+  //   video_streams: [''],
+  //   update_id: 0,
+  //   isprograms: 0,
+  //   live: '',
+  //   time: ''
+  // },
+  // {
+  //   cid: '118',
+  //   description: '育婴知识、胎教音乐、儿童故事为主要内容的公益广播。',
+  //   image:
+  //     'http://program.hndt.com/files/images/2018/06/15/1529027972770543.jpg',
+  //   name: '易象孕育台',
+  //   hotline: '',
+  //   interact: '1',
+  //   streams: ['http://stream.hndt.com/live/yxsc/playlist.m3u8'],
+  //   video_streams: [''],
+  //   update_id: 0,
+  //   isprograms: 0,
+  //   live: '',
+  //   time: ''
+  // },
+  // {
+  //   cid: '119',
+  //   description:
+  //     '精彩节目不容错过，热点事件及时掌握。《有声文摘》汇聚国内广播电视的优秀栏目，让您释放眼睛，用耳朵来获得更多新知。',
+  //   image:
+  //     'http://program.hndt.com/files/images/2017/12/22/1513910910582954.png',
+  //   name: '有声文摘',
+  //   hotline: '',
+  //   interact: '1',
+  //   streams: ['http://stream.hndt.com/live/yswz/playlist.m3u8'],
+  //   video_streams: [''],
+  //   update_id: '13213',
+  //   isprograms: 1,
+  //   live: '《精彩音乐汇》',
+  //   time: '15:46 - 17:15'
+  // }
 ]
 
 export default dataList

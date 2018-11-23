@@ -19,15 +19,14 @@ export default class SwiperWrap extends Component {
 
   componentDidHide() {}
 
-  cliclToPlay = cid => {
-    let url = `/pages/webView/index?url=https://mp.weixin.qq.com/s/IlQcuga1nVzFPcbXHcc7fQ`
+  cliclToPlay = url => {
     Taro.navigateTo({
-      url
+      url: `/pages/webView/index?url=${url}`
     })
   }
 
   render() {
-    let swipers = [{ cid: '120' }, { cid: '120' }, { cid: '120' }]
+    let swipers = this.props.listData
     return (
       <Swiper
         className='swiper-wrap'
@@ -41,8 +40,8 @@ export default class SwiperWrap extends Component {
           return (
             <SwiperItem key={index}>
               <Image
-                onClick={this.cliclToPlay.bind(this, item.cid)}
-                src='http://www.hndt.com/original/201811/01/2254685/res/-174014083_wechat.jpg'
+                onClick={this.cliclToPlay.bind(this, item.url)}
+                src={item.src}
                 className='item-img'
                 mode='aspectFill'
               />

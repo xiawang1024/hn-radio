@@ -13,4 +13,10 @@ const GetListCount = () =>
   Taro.request({
     url: `https://a.weixin.hndt.com/boom/openapi/visit/list?name=XMT`
   })
-export { AddCount, GetListCount }
+
+const GetSwiper = () =>
+  Taro.request({
+    url: 'https://api.hndt.com/api/page?template_id=404'
+  })
+
+export { AddCount, GetListCount, GetSwiper }

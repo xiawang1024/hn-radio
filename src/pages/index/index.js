@@ -9,6 +9,8 @@ import HomeHot from '../../components/homeHot'
 
 import RadioList from '../../components/radioList'
 
+import { GetSwiper } from '../../api/index'
+
 export default class Index extends Component {
   config = {
     navigationBarTitleText: '河南 RADIO',
@@ -18,13 +20,21 @@ export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isType: true
+      isType: true,
+      listData: []
     }
   }
 
   componentWillMount() {}
 
-  componentDidMount() {}
+  componentDidMount() {
+    GetSwiper().then(res => {
+      let { data } = res
+      this.setState({
+        listData: data
+      })
+    })
+  }
 
   componentWillUnmount() {}
 
@@ -33,11 +43,12 @@ export default class Index extends Component {
   componentDidHide() {}
   onShareAppMessage() {}
   render() {
+    let { listData } = this.state
     return (
-      <View className="index">
+      <View className='index'>
         {this.state.isType ? (
           <View>
-            <SwiperWrap />
+            <SwiperWrap listData={listData} />
             <RadioList />
           </View>
         ) : (
