@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Image, Slider } from '@tarojs/components'
 
 import './index.scss'
 
@@ -193,6 +193,18 @@ export default class Player extends Component {
           <View className={isPlay ? 'logo-wrap playing' : 'logo-wrap'}>
             <Image className='logo-bg' src={require('./logo-bg.png')} />
             <Image className='logo' src={isPlayInfo.image} />
+          </View>
+          <View className='slide-wrap'>
+            <Slider
+              step='1'
+              activeColor='#c20d23'
+              backgroundColor='#ddd'
+              blockSize='12'
+              value='30'
+              min='0'
+              max='100'
+              disabled
+            />
           </View>
         </View>
 

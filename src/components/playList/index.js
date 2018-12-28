@@ -42,17 +42,17 @@ export default class PlayList extends Component {
   render() {
     let { isPlayIndex } = this.state
     return (
-      <View className="play-list">
+      <View className='play-list'>
         <ScrollView
-          className="list-wrap"
+          className='list-wrap'
           scrollY
           scrollWithAnimation
-          scrollTop="0"
+          scrollTop='0'
         >
           {dataList.map((item, index) => {
             return (
               <View
-                className="item"
+                className='item'
                 key={item.cid}
                 onClick={this.switchPlay.bind(this, item.cid)}
               >
@@ -69,8 +69,8 @@ export default class PlayList extends Component {
             )
           })}
         </ScrollView>
-        <View className="icon" onClick={this.closeList}>
-          <Image className="icon-close" src={require('./icon-close.png')} />
+        <View className='icon' onClick={this.closeList}>
+          <Image className='icon-close' src={require('./icon-close.png')} />
         </View>
       </View>
     )

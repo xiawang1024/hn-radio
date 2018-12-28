@@ -56,6 +56,7 @@ export default class MyTabBar extends Component {
 
   componentDidHide() {}
   clickToPlay = cid => {
+    // console.log(cid)
     Taro.navigateTo({
       url: `/pages/player/index?cid=${cid}`
     })
@@ -63,29 +64,30 @@ export default class MyTabBar extends Component {
   render() {
     let { dataList } = this.state
     return (
-      <View className="radio-list">
-        <View className="list-wrap">
+      <View className='radio-list'>
+        <View className='list-wrap'>
           {dataList &&
             dataList.map(item => (
               <View
-                className="item"
+                className='item'
                 key={item.cid}
+                data-cid={item.cid}
                 onClick={this.clickToPlay.bind(this, item.cid)}
               >
-                <View className="logo-wrap">
-                  <Image className="logo" src={item.image} />
-                  <View className="logo-mark" />
+                <View className='logo-wrap'>
+                  <Image className='logo' src={item.image} />
+                  <View className='logo-mark' />
                   <Image
-                    className="icon-play"
+                    className='icon-play'
                     src={require('./icon-play.png')}
                   />
                 </View>
-                <View className="text-wrap">
-                  <View className="title-wrap">
-                    <View className="title">{item.name}</View>
-                    <View className="border" />
+                <View className='text-wrap'>
+                  <View className='title-wrap'>
+                    <View className='title'>{item.name}</View>
+                    <View className='border' />
                   </View>
-                  <View className="desc-wrap">{item.description}</View>
+                  <View className='desc-wrap'>{item.description}</View>
                 </View>
                 {/* <View className="other-wrap"> */}
                 {/* <View className="collect-wrap">
@@ -102,9 +104,9 @@ export default class MyTabBar extends Component {
                 </View> */}
                 {/* <View className='time-wrap'>2018.07.21</View> */}
                 {/* </View> */}
-                <View className="play-num">
+                <View className='play-num'>
                   <Image
-                    className="icon-play-num"
+                    className='icon-play-num'
                     src={require('./icon-play-num.png')}
                   />
                   <Text>{item.count}</Text>
